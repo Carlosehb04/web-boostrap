@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      footer {
+        margin-top: auto;
+        width: 100%;
+      }
+      .carousel-item img {
+        width: 100%;
+        height: 60vh;
+        object-fit: cover;
+      }
+
+      .card-custom {
+        width: 320px;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .card-custom img {
+        height: 200px;
+        object-fit: cover;
+        padding: 1rem;
+      }
+
+      .card-custom:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-custom .card-body {
+        padding: 1.5rem;
+      }
+
+      .card-custom .card-title {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .card-custom .card-text {
+        color: #555;
+      }
+      .card-custom {
+        backdrop-filter: blur(10px);
+      }
+      #modalGaleria .carousel-item {
+        height: 100vh;
+      }
+      #carouselModal {
+        height: 80vh;
+      }
+
+      #modalGaleria .carousel-item img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+      #modalGaleria .img-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      #modalGaleria .btn-close {
+        background-color: rgba(0, 0, 0, 0.9); /* fondo oscuro */
+        filter: invert(1); /* icono blanco */
+        border-radius: 50%;
+        padding: 12px;
+        z-index: 1056;
+      }
+      #formContacto .form-control {
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        transition: all 0.3s ease;
+      }
+      #formContacto .form-label {
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
+      #formContacto button {
+        border-radius: 10px;
+        padding: 10px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      #formContacto button:hover {
+        transform: translateY(-2px);
+      }
+      #modalContacto .modal-content {
+        border-radius: 15px;
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      .enlaces {
+        color: white;
+      }
+      .enlaces:hover {
+        color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+          ><img
+            src="logo-removeb.png"
+            width="70"
+            height="60"
+            class="d-inline-block align-text-top"
+            alt=""
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#"
+                data-bs-toggle="modal"
+                data-bs-target="#modalContacto"
+              >
+                Contactanos
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Explorar
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Montañas</a></li>
+                <li><a class="dropdown-item" href="#">Lagos</a></li>
+                <li><a class="dropdown-item" href="#">Campos</a></li>
+                <li><a class="dropdown-item" href="#">Bosques</a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button class="btn btn-outline-success" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Carousel -->
+    <div class="container mt-5">
+      <div
+        id="carouselExampleCaptions"
+        class="carousel slide"
+        data-bs-ride="carousel"
+        data-bs-interval="2000"
+      >
+        <div class="carousel-indicators">
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="0"
+            class="active"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="1"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="2"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="3"
+          ></button>
+        </div>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img
+              src="img/wolfgang_hasselmann-sunset.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Refugio entre montañas</h5>
+              <p>
+                Un paisaje sereno donde el bosque y el lago se funden bajo la
+                luz cálida del atardecer, creando una sensación de calma y
+                conexión con la naturaleza.
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img
+              src="img/sinousxl-warnemunde.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Puerto vibrante</h5>
+              <p>
+                Un entorno costero lleno de vida donde barcos y arquitectura
+                conviven con el mar.
+              </p>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="img/fossane-trees.jpg" class="d-block w-100" alt="..." />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Silencio invernal</h5>
+              <p>
+                Un paisaje cubierto de nieve donde la luz resalta la calma del
+                entorno natural.
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img
+              src="img/simardfrancois-beach.jpg"
+              class="d-block w-100"
+              alt="..."
+            />
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Horizonte en silencio</h5>
+              <p>
+                La inmensidad del mar y el cielo invitan a la reflexión en un
+                entorno minimalista.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="carousel-control-prev"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="prev"
+        >
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="carousel-control-next"
+          type="button"
+          data-bs-target="#carouselExampleCaptions"
+          data-bs-slide="next"
+        >
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <div class="container mt-5">
+        <div class="row g-4 justify-content-center">
+          <!-- CARD 1 -->
+          <div class="col-11 col-sm-10 col-md-6 col-lg-4">
+            <div class="card card-custom h-100">
+              <img
+                src="campos/campo-naturalesa.jpg"
+                class="card-img-top"
+                alt="Naturaleza"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Amanecer en la montaña</h5>
+                <p class="card-text">
+                  Paisaje natural cubierto de niebla al amanecer.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalGaleria"
+                  data-galeria="montana"
+                >
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="col-11 col-sm-10 col-md-6 col-lg-4">
+            <div class="card card-custom h-100">
+              <img src="lagos/rio-azul.jpg" class="card-img-top" alt="Lago" />
+              <div class="card-body">
+                <h5 class="card-title">Lago en calma</h5>
+                <p class="card-text">
+                  Reflejo del bosque sobre aguas tranquilas.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalGaleria"
+                  data-galeria="lago"
+                >
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="col-11 col-sm-10 col-md-6 col-lg-4">
+            <div class="card card-custom h-100">
+              <img src="paisaje/paisaje.jpg" class="card-img-top" alt="Campo" />
+              <div class="card-body">
+                <h5 class="card-title">Sendero natural</h5>
+                <p class="card-text">
+                  Camino entre montañas y praderas verdes.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalGaleria"
+                  data-galeria="senderos"
+                >
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 4 -->
+          <div class="col-11 col-sm-10 col-md-6 col-lg-4">
+            <div class="card card-custom h-100">
+              <img
+                src="senderos/montañas.jpg"
+                class="card-img-top"
+                alt="Montañas"
+              />
+              <div class="card-body">
+                <h5 class="card-title">Paisaje alpino</h5>
+                <p class="card-text">
+                  Montañas y cabañas en un entorno natural.
+                </p>
+                <button
+                  type="button"
+                  class="btn btn-info"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalGaleria"
+                  data-galeria="paisajes"
+                >
+                  Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalGaleria" tabindex="-1">
+      <div class="modal-dialog modal-fullscreen modal-dialog-centered">
+        <div class="modal-content bg-dark">
+          <div class="modal-body p-0">
+            <button
+              type="button"
+              class="btn-close position-absolute end-0 m-5 z-3"
+              style="background-color: white; border-radius: 50%; padding: 10px"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+            <div id="carouselModal" class="carousel slide position-relative">
+              <div class="carousel-inner"></div>
+
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselModal"
+                data-bs-slide="prev"
+              >
+                <span class="carousel-control-prev-icon"></span>
+              </button>
+
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselModal"
+                data-bs-slide="next"
+              >
+                <span class="carousel-control-next-icon"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalContacto" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Contáctanos</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <form id="formContacto">
+              <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" class="form-control" required />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" required />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Mensaje</label>
+                <textarea class="form-control" rows="3" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                Enviar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 w-100">
+      <div class="container py-4">
+        <div class="row">
+          <div class="col-md-4">
+            <h5>Mi Web</h5>
+            <p>Diseño moderno con Bootstrap.</p>
+          </div>
+
+          <div class="col-md-4">
+            <h5>Enlaces</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#" class="enlaces text-decoration-none">Inicio</a>
+              </li>
+              <li>
+                <a href="#" class="enlaces text-decoration-none">Servicios</a>
+              </li>
+              <li>
+                <a href="#" class="enlaces text-decoration-none">Contacto</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-md-4">
+            <h5>Contacto</h5>
+            <a
+              href="mailto:info@miweb.com?subject=Consulta&body=Hola quiero información"
+              ><i class="bi bi-envelope"></i
+            ></a>
+            <a href=""><i class="bi bi-github"></i></a>
+            <a href=""><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <hr class="border-light" />
+        <p class="text-center mb-0">© 2026 Mi web</p>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
